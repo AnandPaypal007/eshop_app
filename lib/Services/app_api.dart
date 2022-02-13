@@ -114,4 +114,37 @@ class AppApi extends ApiBase {
       throw Exception(e);
     }
   }
+
+  getAllFavourite() async {
+    try {
+      String url = AppUrls.favourite;
+      APIServiceManager api = APIServiceManager(url);
+      ApiResponse response = await api.get();
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  makeFavourite(body) async {
+    try {
+      String url = AppUrls.favourite;
+      APIServiceManager api = APIServiceManager(url);
+      ApiResponse response = await api.post(body);
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  deleteFavourite() async {
+    try {
+      String url = AppUrls.favourite;
+      APIServiceManager api = APIServiceManager(url);
+      ApiResponse response = await api.delete();
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 }

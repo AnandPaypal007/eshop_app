@@ -13,8 +13,8 @@ class HomeView extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: const [
-            HomeBannerView(),
             CategoriesGridView(),
+            HomeBannerView(),
             HomeHorizontalList(),
             HomeHorizontalList(),
           ],

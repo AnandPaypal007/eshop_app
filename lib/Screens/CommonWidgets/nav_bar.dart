@@ -1,3 +1,4 @@
+import 'package:eshop/Screens/Search/Pages/search_page.dart';
 import 'package:eshop/Utils/apptheme.dart';
 import 'package:flutter/material.dart';
 
@@ -16,8 +17,8 @@ class Navbar extends StatelessWidget implements PreferredSize {
   final Function? addCallBack;
 
   const Navbar(
-      {this.height = kToolbarHeight,
-      Key? key,
+      {Key? key,
+      this.height = kToolbarHeight,
       @required this.title,
       this.isSearch = false,
       this.isCart = false,
@@ -50,7 +51,7 @@ class Navbar extends StatelessWidget implements PreferredSize {
         color: Colors.black, //change your color here
       ),
       title: isSearch
-          ? _searchBar()
+          ? _searchBar(context)
           : AppTitle(
               title: title,
               fontSize: 22,
@@ -61,9 +62,12 @@ class Navbar extends StatelessWidget implements PreferredSize {
     );
   }
 
-  _searchBar() {
+  _searchBar(context) {
     return GestureDetector(
-      onTap: () => searchCallBack!(),
+      onTap: () => {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (c) => const SearchPage()))
+      },
       child: Container(
         padding: const EdgeInsets.all(2),
         decoration: BoxDecoration(
@@ -76,7 +80,7 @@ class Navbar extends StatelessWidget implements PreferredSize {
             enabled: false,
             height: 34,
             isRightIcon: true,
-            hintText: "searchCubeSnack",
+            hintText: "search anything",
             rightIcon: Icon(
               Icons.search,
               color: AppColors.lightGrey,

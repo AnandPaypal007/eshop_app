@@ -2,6 +2,7 @@ import 'package:eshop/Models/product.dart';
 
 class MProductResponse {
   List<MProducts>? products;
+  List<MProducts>? favourites;
 
   MProductResponse({this.products});
 
@@ -10,6 +11,12 @@ class MProductResponse {
       products = <MProducts>[];
       json['products'].forEach((v) {
         products!.add(MProducts.fromJson(v));
+      });
+    }
+    if (json['favourites'] != null) {
+      favourites = <MProducts>[];
+      json['favourites'].forEach((v) {
+        favourites!.add(MProducts.fromJson(v));
       });
     }
   }
