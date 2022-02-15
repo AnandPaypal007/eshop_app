@@ -8,32 +8,35 @@ abstract class SearchState extends Equatable {
 }
 
 /// UnInitialized
-class UnSearchState extends SearchState {
-
-  UnSearchState();
+class SearchDefaultState extends SearchState {
+  SearchDefaultState();
 
   @override
-  String toString() => 'UnSearchState';
+  String toString() => 'SearchDefaultState';
 }
 
-/// Initialized
-class InSearchState extends SearchState {
-  InSearchState(this.hello);
-  
-  final String hello;
+class SearchLoadingState extends SearchState {
+  SearchLoadingState();
 
   @override
-  String toString() => 'InSearchState $hello';
+  String toString() => 'SearchLoadingState';
+}
+
+class SearchDoneState extends SearchState {
+  SearchDoneState();
 
   @override
-  List<Object> get props => [hello];
+  String toString() => 'SearchDoneState';
+
+  @override
+  List<Object> get props => [];
 }
 
 class ErrorSearchState extends SearchState {
   ErrorSearchState(this.errorMessage);
- 
+
   final String errorMessage;
-  
+
   @override
   String toString() => 'ErrorSearchState';
 

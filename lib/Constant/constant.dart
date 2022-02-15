@@ -8,4 +8,5 @@ class AppUrls {
   static String cartCount = "user/cart/count";
   static String favourite = "user/favourite";
   static String offers = "store/products/offers";
+  static String search = "store/products";
 }

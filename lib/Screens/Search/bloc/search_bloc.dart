@@ -1,11 +1,13 @@
 import 'dart:developer' as developer;
 import 'package:bloc/bloc.dart';
+import 'package:eshop/Screens/Search/bloc/search_repo.dart';
 
 import 'index.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
+  final SearchRepo repo;
 
-  SearchBloc(SearchState initialState) : super(initialState){
+  SearchBloc(SearchState initialState, this.repo) : super(initialState){
    on<SearchEvent>((event, emit) {
       return emit.forEach<SearchState>(
         event.applyAsync(currentState: state, bloc: this),

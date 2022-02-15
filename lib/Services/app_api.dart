@@ -147,4 +147,15 @@ class AppApi extends ApiBase {
       throw Exception(e);
     }
   }
+
+  searchFor(String text) async {
+    try {
+      String url = AppUrls.search +"?query_text=$text";
+      APIServiceManager api = APIServiceManager(url);
+      ApiResponse response = await api.get();
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 }
