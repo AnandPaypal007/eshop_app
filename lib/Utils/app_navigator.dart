@@ -1,14 +1,26 @@
 import 'package:eshop/Screens/Home/Pages/home_page.dart';
+import 'package:eshop/Screens/Products/Pages/product_detail_page.dart';
+import 'package:eshop/main.dart';
 import 'package:flutter/material.dart';
 
 class AppNavigator {
-  static push(context, Widget child) {
-    Navigator.push(context, MaterialPageRoute(builder: (c) => child));
+  static push(Widget child) {
+    Navigator.push(NavigationService.navigatorKey.currentContext!,
+        MaterialPageRoute(builder: (c) => child));
   }
 
-  static pushRemovingAll(context, Widget child) {
-    Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => const HomePage()),
-        (Route<dynamic> route) => false);
+  static pushRemovingAll(Widget child) {
+    Navigator.of(NavigationService.navigatorKey.currentContext!)
+        .pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => const HomePage()),
+            (Route<dynamic> route) => false);
+  }
+
+  static productDetail({
+    id,
+  }) {
+    push(ProductDetailsPage(
+      id: id,
+    ));
   }
 }

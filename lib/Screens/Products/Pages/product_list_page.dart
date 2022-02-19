@@ -1,6 +1,4 @@
 import 'package:eshop/Screens/CommonWidgets/nav_bar.dart';
-import 'package:eshop/Screens/Home/bloc/home_repo.dart';
-import 'package:eshop/Screens/Home/bloc/index.dart';
 import 'package:eshop/Screens/Products/Pages/grid_options.dart';
 import 'package:eshop/Screens/Products/bloc/product_bloc.dart';
 import 'package:eshop/Screens/Products/bloc/product_event.dart';

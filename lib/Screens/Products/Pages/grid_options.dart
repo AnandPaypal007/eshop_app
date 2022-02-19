@@ -2,7 +2,8 @@ import 'package:eshop/Models/product.dart';
 import 'package:eshop/Screens/CommonWidgets/app_loader.dart';
 import 'package:eshop/Screens/Home/Views/product_grid_card_view.dart';
 import 'package:eshop/Screens/Home/Views/product_list_card_view.dart';
-import 'package:eshop/Screens/Products/Pages/product_details.dart';
+import 'package:eshop/Screens/Products/Pages/product_detail_page.dart';
+import 'package:eshop/Screens/Products/Views/product_details.dart';
 import 'package:eshop/Screens/Products/bloc/product_bloc.dart';
 import 'package:eshop/Screens/Products/bloc/product_state.dart';
 import 'package:eshop/Utils/app_navigator.dart';
@@ -110,9 +111,8 @@ class ProductGrid extends StatelessWidget {
           return GestureDetector(
             onTap: () {
               AppNavigator.push(
-                  context,
                   ProductDetailsPage(
-                    product: product,
+                    id: product.id ?? 0,
                   ));
             },
             child: ProductCardView(

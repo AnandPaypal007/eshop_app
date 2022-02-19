@@ -87,7 +87,7 @@ class _HomeBannerViewState extends State<HomeBannerView> {
   }
 
   showProducts(context, id) {
-    AppNavigator.push(context, BannerProductsPage(id: id));
+    AppNavigator.push(BannerProductsPage(id: id));
   }
 
   @override

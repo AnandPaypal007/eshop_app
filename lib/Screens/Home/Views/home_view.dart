@@ -14,8 +14,8 @@ class HomeView extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: const [
-            CategoriesGridView(),
             HomeBannerView(),
+            CategoriesGridView(),
             HomeHorizontalList(
               title: "Recently Added",
             ),

@@ -9,22 +9,25 @@ class ViewAll extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SizedBox(
-          //width: double.infinity,
-          child: AppTitle(
-            textAlign: TextAlign.left,
-            title: title ?? "",
-            padding:
-                padding ?? const EdgeInsets.only(left: 10, right: 10, top: 15),
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
+    return Container(
+      margin: const EdgeInsets.only(top: 15, bottom: 5),
+      child: Row(
+        children: [
+          SizedBox(
+            //width: double.infinity,
+            child: AppTitle(
+              textAlign: TextAlign.left,
+              title: title ?? "",
+              padding: padding ??
+                  const EdgeInsets.only(left: 10, right: 10, top: 15),
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+            ),
           ),
-        ),
-        const Spacer(),
-        const Icon(Icons.arrow_forward_ios)
-      ],
+          const Spacer(),
+          const Icon(Icons.arrow_forward_ios)
+        ],
+      ),
     );
   }
 }

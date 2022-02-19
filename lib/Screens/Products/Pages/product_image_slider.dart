@@ -1,4 +1,4 @@
-import 'package:eshop/Screens/Products/Pages/product_details.dart';
+import 'package:eshop/Screens/Products/Views/product_details.dart';
 import 'package:eshop/Utils/apptheme.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';

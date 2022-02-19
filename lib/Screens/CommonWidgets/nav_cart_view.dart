@@ -1,6 +1,5 @@
 import 'package:eshop/Screens/Cart/CartPage/cart_page.dart';
 import 'package:eshop/Screens/Profile/bloc/index.dart';
-import 'package:eshop/Screens/Profile/bloc/user_bloc.dart';
 import 'package:eshop/Screens/Profile/bloc/user_state.dart';
 import 'package:eshop/Utils/app_navigator.dart';
 import 'package:eshop/Utils/apptheme.dart';
@@ -43,7 +42,7 @@ class _NavCartViewState extends State<NavCartView> {
                     color: widget.lightGrey ?? AppColors.lightGrey),
                 onTap: () {
                   //if (cartCount == 0) return;
-                  AppNavigator.push(context, const CartPage());
+                  AppNavigator.push(const CartPage());
                 },
               ),
             ),

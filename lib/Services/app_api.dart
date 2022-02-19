@@ -57,6 +57,17 @@ class AppApi extends ApiBase {
     }
   }
 
+  productDetail(id) async {
+    try {
+      String url = AppUrls.productDetail +"?product_id=$id";
+      APIServiceManager api = APIServiceManager(url);
+      ApiResponse response = await api.get();
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
   userCart(isCount) async {
     try {
       String url = AppUrls.cartCount;
@@ -183,7 +194,7 @@ class AppApi extends ApiBase {
 
   getDeals(type) async {
     try {
-      String url = AppUrls.deals +"?type=$type";
+      String url = AppUrls.deals + "?type=$type";
       APIServiceManager api = APIServiceManager(url);
       ApiResponse response = await api.get();
       return response;

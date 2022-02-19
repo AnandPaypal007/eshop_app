@@ -4,8 +4,6 @@ import 'package:eshop/Models/product.dart';
 import 'package:eshop/Screens/CommonWidgets/app_price.dart';
 import 'package:eshop/Screens/CommonWidgets/app_textfield.dart';
 import 'package:eshop/Screens/CommonWidgets/app_title.dart';
-import 'package:eshop/Screens/Home/Views/product_grid_card_view.dart';
-import 'package:eshop/Screens/Products/Pages/product_details.dart';
 import 'package:eshop/Screens/Search/bloc/index.dart';
 import 'package:eshop/Screens/Search/bloc/search_bloc.dart';
 import 'package:eshop/Utils/app_navigator.dart';
@@ -51,11 +49,8 @@ class _SearchViewState extends State<SearchView> {
                   itemBuilder: (c, index) {
                     final MProducts product = bloc.repo.productFor(index);
                     return GestureDetector(
-                      onTap: () => AppNavigator.push(
-                          context,
-                          ProductDetailsPage(
-                            product: product,
-                          )),
+                      onTap: () => AppNavigator.productDetail(
+                          id: product.id,),
                       child: Card(
                         margin: const EdgeInsets.all(10),
                         child: Padding(

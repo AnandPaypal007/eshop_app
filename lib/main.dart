@@ -1,6 +1,4 @@
 import 'package:eshop/Screens/Authentication/Authenticator.dart';
-import 'package:eshop/Screens/Home/Pages/home_page.dart';
-import 'package:eshop/Screens/Home/bloc/index.dart';
 import 'package:eshop/Screens/Profile/bloc/user_bloc.dart';
 import 'package:eshop/Screens/Profile/bloc/user_repo.dart';
 import 'package:eshop/Screens/Profile/bloc/user_state.dart';
@@ -18,6 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        navigatorKey: NavigationService.navigatorKey,
         title: 'Eshop',
         theme: ThemeData(
           primarySwatch: Colors.blue,
@@ -27,4 +26,10 @@ class MyApp extends StatelessWidget {
           child: const Authenticator(),
         ));
   }
+}
+
+
+class NavigationService { 
+  static GlobalKey<NavigatorState> navigatorKey = 
+  GlobalKey<NavigatorState>();
 }

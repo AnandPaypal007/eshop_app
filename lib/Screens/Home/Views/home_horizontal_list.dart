@@ -4,6 +4,7 @@ import 'package:eshop/Screens/CommonWidgets/app_title.dart';
 import 'package:eshop/Screens/Home/Views/view_all.dart';
 import 'package:eshop/Screens/Home/bloc/home_repo.dart';
 import 'package:eshop/Screens/Home/bloc/index.dart';
+import 'package:eshop/Utils/app_navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -45,58 +46,62 @@ class _HomeHorizontalListState extends State<HomeHorizontalList> {
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (c, index) {
                     final product = products![index];
-                    return Card(
-                      child: Container(
-                        margin: const EdgeInsets.all(5),
-                        height: 150,
-                        width: 100,
-                        child: Stack(
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.network(
-                                      product.logo ?? "",
-                                      height: 90,
+                    return GestureDetector(
+                      onTap: () => AppNavigator.productDetail(id: product.id),
+                      child: Card(
+                        child: Container(
+                          margin: const EdgeInsets.all(5),
+                          height: 150,
+                          width: 100,
+                          child: Stack(
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Image.network(
+                                        product.logo ?? "",
+                                        height: 90,
+                                        width: 100,
+                                      ),
+                                    ],
+                                  ),
+                                  const Padding(
+                                    padding: EdgeInsets.only(bottom: 5.0),
+                                    child: Divider(
+                                      height: 1,
                                     ),
-                                  ],
-                                ),
-                                const Padding(
-                                  padding: EdgeInsets.only(bottom: 5.0),
-                                  child: Divider(
-                                    height: 1,
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 25,
-                                  child: AppTitle(
-                                    title: product.name,
-                                    maxLines: 2,
-                                    fontSize: 10,
-                                    textAlign: TextAlign.start,
-                                    padding: const EdgeInsets.only(bottom: 5),
+                                  SizedBox(
+                                    height: 25,
+                                    child: AppTitle(
+                                      title: product.name,
+                                      maxLines: 2,
+                                      fontSize: 10,
+                                      textAlign: TextAlign.start,
+                                      padding: const EdgeInsets.only(bottom: 5),
+                                    ),
                                   ),
-                                ),
-                                AppPrice(
-                                  price: product.price!,
-                                  titel: "Rs: ",
-                                )
-                              ],
-                            ),
-                            const Positioned(
-                              child: AppTitle(
-                                title: "30%",
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
+                                  AppPrice(
+                                    price: product.price!,
+                                    titel: "Rs: ",
+                                  )
+                                ],
                               ),
-                              right: 0,
-                              top: 0,
-                            )
-                          ],
+                              const Positioned(
+                                child: AppTitle(
+                                  title: "30%",
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                right: 0,
+                                top: 0,
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     );

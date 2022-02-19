@@ -47,7 +47,6 @@ class _CategoriesGridViewState extends State<CategoriesGridView> {
                     final cat = bloc?.repo.categories[index];
                     return GestureDetector(
                       onTap: () => AppNavigator.push(
-                          context,
                           ProductListPage(
                             categoryId: cat?.id,
                           )),

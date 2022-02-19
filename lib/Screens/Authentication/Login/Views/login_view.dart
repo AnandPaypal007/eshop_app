@@ -20,7 +20,6 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer(
       builder: (c, state) {
-        print(state);
         return Stack(
           children: [
             const Padding(padding: EdgeInsets.all(20.0), child: _LoginForm()),
@@ -30,7 +29,7 @@ class LoginView extends StatelessWidget {
       },
       listener: (c, state) {
         if (state is AuthenticationDoneState) {
-          AppNavigator.pushRemovingAll(context, const HomePage());
+          AppNavigator.pushRemovingAll(const HomePage());
         }
         if (state is ErrorAuthenticationState) {
           AppAlert.showAlert(message: state.errorMessage, context: context);
