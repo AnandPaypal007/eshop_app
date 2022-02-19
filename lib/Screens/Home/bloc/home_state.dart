@@ -44,6 +44,16 @@ class CategoryDoneState extends HomeState {
   List<Object> get props => [];
 }
 
+class OffersDoneState extends HomeState {
+  OffersDoneState();
+  
+  @override
+  String toString() => 'OffersDoneState';
+
+  @override
+  List<Object> get props => [];
+}
+
 class ErrorHomeState extends HomeState {
   ErrorHomeState(this.errorMessage);
  

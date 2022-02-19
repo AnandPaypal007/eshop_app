@@ -2,13 +2,10 @@ import 'package:eshop/Models/product.dart';
 import 'package:eshop/Screens/CommonWidgets/app_loader.dart';
 import 'package:eshop/Screens/Home/Views/product_grid_card_view.dart';
 import 'package:eshop/Screens/Home/Views/product_list_card_view.dart';
-import 'package:eshop/Screens/Home/bloc/home_state.dart';
-import 'package:eshop/Screens/Home/bloc/index.dart';
 import 'package:eshop/Screens/Products/Pages/product_details.dart';
 import 'package:eshop/Screens/Products/bloc/product_bloc.dart';
 import 'package:eshop/Screens/Products/bloc/product_state.dart';
 import 'package:eshop/Utils/app_navigator.dart';
-import 'package:eshop/Utils/apptheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,12 +18,18 @@ class GridOptions extends StatefulWidget {
 
 class _GridOptionsState extends State<GridOptions> {
   bool isList = false;
-  Widget? child = const ProductGrid();
+  Widget? child;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer(
       listener: (c, state) {},
       builder: (context, state) {
+        if (state is ProductDoneState) {
+          final products = BlocProvider.of<ProductBloc>(context).repo.products;
+          child = ProductGrid(
+            products: products,
+          );
+        }
         return Column(
           children: [
             /* SizedBox(
@@ -93,15 +96,17 @@ class ProductList extends StatelessWidget {
 }
 
 class ProductGrid extends StatelessWidget {
-  const ProductGrid({Key? key}) : super(key: key);
+  final List<MProducts>? products;
+  const ProductGrid({Key? key, this.products}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final repo = BlocProvider.of<ProductBloc>(context).repo;
+    // final repo = BlocProvider.of<ProductBloc>(context).repo;
     return Expanded(
       child: GridView.builder(
         itemBuilder: (context, position) {
-          final MProducts product = repo.product(position);
+          //final MProducts product = repo.product(position);
+          final MProducts product = products![position];
           return GestureDetector(
             onTap: () {
               AppNavigator.push(
@@ -115,7 +120,7 @@ class ProductGrid extends StatelessWidget {
             ),
           );
         },
-        itemCount: repo.productsCount,
+        itemCount: products?.length ?? 0,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             mainAxisExtent: 272.0, crossAxisCount: 2),
       ),

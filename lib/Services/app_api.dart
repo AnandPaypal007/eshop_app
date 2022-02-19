@@ -150,7 +150,40 @@ class AppApi extends ApiBase {
 
   searchFor(String text) async {
     try {
-      String url = AppUrls.search +"?query_text=$text";
+      String url = AppUrls.search + "?query_text=$text";
+      APIServiceManager api = APIServiceManager(url);
+      ApiResponse response = await api.get();
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  getOffers() async {
+    try {
+      String url = AppUrls.offers;
+      APIServiceManager api = APIServiceManager(url);
+      ApiResponse response = await api.get();
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  getOffersDetails(id) async {
+    try {
+      String url = AppUrls.offersDetail + "?id=$id";
+      APIServiceManager api = APIServiceManager(url);
+      ApiResponse response = await api.get();
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  getDeals(type) async {
+    try {
+      String url = AppUrls.deals +"?type=$type";
       APIServiceManager api = APIServiceManager(url);
       ApiResponse response = await api.get();
       return response;

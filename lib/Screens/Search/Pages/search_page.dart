@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:eshop/Screens/CommonWidgets/nav_bar.dart';
 import 'package:eshop/Screens/Search/Views/search_view.dart';
@@ -17,7 +16,6 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  Timer? _debounce;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

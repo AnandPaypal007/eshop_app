@@ -1,5 +1,6 @@
 import 'package:eshop/Screens/CommonWidgets/nav_bar.dart';
 import 'package:eshop/Screens/Home/Views/home_view.dart';
+import 'package:eshop/Utils/apptheme.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,13 +14,14 @@ class _HomePageState extends State<HomePage> {
   int index = 0;
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: Navbar(
+    return Scaffold(
+      backgroundColor: AppColors.blue100,
+      appBar: const Navbar(
         title: "",
         isCart: true,
         isSearch: true,
       ),
-      body: HomeView(),
+      body: const HomeView(),
     );
   }
 }

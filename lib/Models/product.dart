@@ -1,4 +1,4 @@
-class MProducts {
+abstract class MProductBase {
   String? name;
   num? price;
   String? logo;
@@ -6,15 +6,10 @@ class MProducts {
   String? description;
   int? id;
   List<String>? images;
+}
 
-  MProducts(
-      {this.name,
-      this.price,
-      this.logo,
-      this.offerPrice,
-      this.description,
-      this.id,
-      this.images});
+class MProducts extends MProductBase {
+  MProducts({name, price, logo, offerPrice, description, id, images});
 
   MProducts.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -23,7 +18,9 @@ class MProducts {
     offerPrice = json['offer_price'];
     description = json['description'];
     id = json['id'];
-    images = json['images'].cast<String>();
+    if (json['images'] != null) {
+      images = json['images'].cast<String>();
+    }
   }
 
   Map<String, dynamic> toJson() {

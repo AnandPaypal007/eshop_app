@@ -9,14 +9,17 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: SingleChildScrollView(
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           children: const [
             CategoriesGridView(),
             HomeBannerView(),
-            HomeHorizontalList(),
-            HomeHorizontalList(),
+            HomeHorizontalList(
+              title: "Recently Added",
+            ),
+            HomeHorizontalList(title: "Deals of the day"),
           ],
         ),
       ),
