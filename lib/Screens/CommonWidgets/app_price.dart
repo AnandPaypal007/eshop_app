@@ -7,12 +7,14 @@ class AppPrice extends StatelessWidget {
   final EdgeInsets padding;
   final String titel;
   final bool isLineThrough;
+  final Color color;
   const AppPrice(
       {Key? key,
       this.price = 0.0,
       this.padding = EdgeInsets.zero,
       this.titel = "Price Rs: ",
-      this.isLineThrough = false})
+      this.isLineThrough = false,
+      this.color = Colors.black})
       : super(key: key);
 
   @override
@@ -28,12 +30,14 @@ class AppPrice extends StatelessWidget {
             title: titel,
             fontSize: 15,
             fontWeight: FontWeight.bold,
+            color: color,
           ),
           AppTitle(
             title: "$price",
             decoration: isLineThrough
                 ? TextDecoration.lineThrough
                 : TextDecoration.none,
+            color: color,
           )
         ],
       ),

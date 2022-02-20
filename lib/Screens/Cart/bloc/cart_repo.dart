@@ -14,6 +14,18 @@ class CartRepo {
   set currentItem(v) => _currentItem = v;
   MCart? get currentItem => _currentItem;
 
+  cartTotal() {
+    num total = 0.0;
+    num tax = 0.0;
+    for (var product in _products) {
+      if (product.offerPrice != null && product.quantity != null) {
+        total = total + (product.quantity! * product.offerPrice!);
+      }
+    }
+    total = tax + total;
+    return total;
+  }
+
   fetchCart() async {
     return await api.getCart();
   }

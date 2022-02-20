@@ -8,7 +8,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CartQuantityView extends StatefulWidget {
   final MCart? cart;
-  const CartQuantityView({Key? key, this.cart}) : super(key: key);
+  const CartQuantityView({
+    Key? key,
+    this.cart,
+  }) : super(key: key);
 
   @override
   State<CartQuantityView> createState() => _CartQuantityViewState();
@@ -66,6 +69,7 @@ class _CartQuantityViewState extends State<CartQuantityView> {
       },
       listener: (c, state) {
         if (state is CartQuantityUpdatedState) {
+          BlocProvider.of<CartBloc>(context).add(ReloadCartEvent());
           AppAlert.showToast(message: "Quantity updated successfully");
         }
         if (state is CartItemDeletedState) {
