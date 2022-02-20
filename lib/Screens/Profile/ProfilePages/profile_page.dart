@@ -1,3 +1,5 @@
+import 'package:eshop/Screens/Profile/ProfileViews/profile_view.dart';
+import 'package:eshop/Utils/apptheme.dart';
 import 'package:flutter/material.dart';
 
 class ProfiilePage extends StatelessWidget {
@@ -5,6 +7,9 @@ class ProfiilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      backgroundColor: AppColors.blue100,
+      body: const ProfileView(),
+    );
   }
 }

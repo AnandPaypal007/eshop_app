@@ -167,7 +167,7 @@ abstract class ApiBase {
     }
 
     final String? token = UserSession.shared.token;
-    final headers = {
+    final Map<String, String> headers = {
       'Authorization': 'Bearer $token',
       "Content-Type": "application/json",
       "Accept": "application/json",
