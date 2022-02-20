@@ -3,6 +3,7 @@ import 'package:eshop/Screens/CommonWidgets/nav_bar.dart';
 import 'package:eshop/Screens/Home/bloc/home_repo.dart';
 import 'package:eshop/Screens/Home/bloc/index.dart';
 import 'package:eshop/Screens/Products/Pages/grid_options.dart';
+import 'package:eshop/Utils/apptheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,6 +27,7 @@ class _BannerProductsPageState extends State<BannerProductsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.blue100,
       appBar: const Navbar(
         title: "Products",
       ),
