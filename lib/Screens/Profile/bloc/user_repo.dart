@@ -8,10 +8,11 @@ class UserRepo {
   set cartCount(v) => _cartCount = v;
   get cartCount => _cartCount;
 
-  fetchCart(isCount) async {
-    ApiResponse response = await api.userCart(isCount);
+  fetchCartCount() async {
+    ApiResponse response = await api.userCartCount();
     return response;
   }
+  
 
   addCart(body) async {
     ApiResponse response = await api.addToCart(body);

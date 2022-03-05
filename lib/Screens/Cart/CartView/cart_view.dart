@@ -1,11 +1,14 @@
 import 'package:eshop/Models/cart.dart';
+import 'package:eshop/Screens/Cart/CartPage/order_confirmation_page.dart';
 import 'package:eshop/Screens/Cart/CartView/cart_cell.dart';
+import 'package:eshop/Screens/Cart/CartView/order_confirmation_view.dart';
 import 'package:eshop/Screens/Cart/bloc/cart_bloc.dart';
 import 'package:eshop/Screens/Cart/bloc/cart_state.dart';
+import 'package:eshop/Screens/Cart/bloc/index.dart';
 import 'package:eshop/Screens/CommonWidgets/app_loader.dart';
 import 'package:eshop/Screens/CommonWidgets/app_price.dart';
 import 'package:eshop/Screens/CommonWidgets/app_round_button.dart';
-import 'package:eshop/Screens/CommonWidgets/app_title.dart';
+import 'package:eshop/Utils/app_navigator.dart';
 import 'package:eshop/Utils/apptheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -49,7 +52,9 @@ class CartView extends StatelessWidget {
                     const Spacer(),
                     AppRoundButton(
                       title: "Place Order",
-                      onPressed: () {},
+                      onPressed: () {
+                        bloc.add(CreateInvoiceEvent());
+                      },
                     )
                   ],
                 ),
@@ -60,7 +65,11 @@ class CartView extends StatelessWidget {
           return Container();
         }
       },
-      listener: (c, state) {},
+      listener: (c, state) {
+        if (state is InvoiceCreatedState) {
+          AppNavigator.push(OrderConfirmationPage());
+        }
+      },
       bloc: bloc,
     );
   }

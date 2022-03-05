@@ -24,7 +24,7 @@ class LoadCartCountEvent extends UserEvent {
       {UserState? currentState, UserBloc? bloc}) async* {
     try {
       yield UserLoadingState();
-      ApiResponse response = await bloc?.repo.fetchCart("count");
+      ApiResponse response = await bloc?.repo.fetchCartCount();
       if (response.status == APIStatus.completed) {
         bloc?.repo.cartCount = response.data["count"];
         yield CartFetchingDoneState();

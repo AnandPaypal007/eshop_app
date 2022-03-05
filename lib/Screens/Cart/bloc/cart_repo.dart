@@ -26,9 +26,18 @@ class CartRepo {
     return total;
   }
 
+  makeInvoiceData() {
+    num total = cartTotal();
+    final products = _products.map((e) => {"product_id": e.id}).toList();
+    final data = {"total": total, "tax": 0.0, "products": products};
+    return data;
+  }
+
   fetchCart() async {
     return await api.getCart();
   }
+
+  
 
   updateCartQuantity(body) async {
     return await api.updateCartQuantity(body);
@@ -36,6 +45,15 @@ class CartRepo {
 
   deleteCartItem(catId) async {
     return await api.deleteCartItem(catId);
+  }
+
+  createInvoice() async {
+    final data = makeInvoiceData();
+    return await api.createInvoice(data);
+  }
+
+  makePayment(invoiceId) async {
+    return await api.makePayment(invoiceId);
   }
 
   removeItemFromLocal(id) {

@@ -101,3 +101,46 @@ class ReloadCartEvent extends CartEvent {
     }
   }
 }
+
+class CreateInvoiceEvent extends CartEvent {
+  @override
+  Stream<CartState> applyAsync(
+      {CartState? currentState, CartBloc? bloc}) async* {
+    try {
+       final ApiResponse response =
+          await bloc?.repo.createInvoice();
+      if (response.status == APIStatus.completed) {
+        yield InvoiceCreatedState();
+      } else {
+        yield ErrorCartState(response.message);
+      }
+    } catch (_, stackTrace) {
+      developer.log('$_',
+          name: 'LoadCartEvent', error: _, stackTrace: stackTrace);
+      yield ErrorCartState(_.toString());
+    }
+  }
+}
+
+class MakePaymentEvent extends CartEvent {
+  final int invoiceId;
+  MakePaymentEvent({this.invoiceId = 0});
+  @override
+  Stream<CartState> applyAsync(
+      {CartState? currentState, CartBloc? bloc}) async* {
+    try {
+       final ApiResponse response =
+          await bloc?.repo.makePayment(invoiceId);
+      if (response.status == APIStatus.completed) {
+        yield PaymentSuccessState();
+      } else {
+        yield PaymentErrorState();
+      }
+    } catch (_, stackTrace) {
+      developer.log('$_',
+          name: 'LoadCartEvent', error: _, stackTrace: stackTrace);
+      yield ErrorCartState(_.toString());
+    }
+  }
+}
+

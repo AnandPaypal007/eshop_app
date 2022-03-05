@@ -1,6 +1,6 @@
 class AppUrls {
-  static String baseUrl = "https://eshop-stag.herokuapp.com/";
-  //static String baseUrl = "http://127.0.0.1:8000/";
+  //static String baseUrl = "https://eshop-stag.herokuapp.com/";
+  static String baseUrl = "http://127.0.0.1:8000/";
   static String categories = "store/products/categories";
   static String login = "auth/login/";
   static String signup = "auth/signup/";
@@ -14,4 +14,6 @@ class AppUrls {
   static String search = "store/products";
   static String productOffers = "store/products/offers";
   static String deals = "store/products/deals";
+  static String createInvoice = "payment/invoice";
+  static String makePayment = "payment/invoice";
 }

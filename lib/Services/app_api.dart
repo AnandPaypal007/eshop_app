@@ -59,7 +59,7 @@ class AppApi extends ApiBase {
 
   productDetail(id) async {
     try {
-      String url = AppUrls.productDetail +"?product_id=$id";
+      String url = AppUrls.productDetail + "?product_id=$id";
       APIServiceManager api = APIServiceManager(url);
       ApiResponse response = await api.get();
       return response;
@@ -69,6 +69,17 @@ class AppApi extends ApiBase {
   }
 
   userCart(isCount) async {
+    try {
+      String url = AppUrls.cartCount;
+      APIServiceManager api = APIServiceManager(url);
+      ApiResponse response = await api.get();
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  userCartCount() async {
     try {
       String url = AppUrls.cartCount;
       APIServiceManager api = APIServiceManager(url);
@@ -120,6 +131,28 @@ class AppApi extends ApiBase {
 
       APIServiceManager api = APIServiceManager(url);
       ApiResponse response = await api.delete();
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  createInvoice(data) async {
+    try {
+      String url = AppUrls.createInvoice;
+      APIServiceManager api = APIServiceManager(url);
+      ApiResponse response = await api.post(data);
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  makePayment(invoiceId) async {
+    try {
+      String url = AppUrls.makePayment;
+      APIServiceManager api = APIServiceManager(url);
+      ApiResponse response = await api.post({"invoice_id": invoiceId});
       return response;
     } catch (e) {
       throw Exception(e);

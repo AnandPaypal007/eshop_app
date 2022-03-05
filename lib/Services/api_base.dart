@@ -50,7 +50,8 @@ abstract class ApiBase {
 
     ApiResponse responseJson;
     try {
-      final response = await http.delete(Uri.parse(url ?? ""), headers: headers);
+      final response =
+          await http.delete(Uri.parse(url ?? ""), headers: headers);
       responseJson = _processResponse(response);
       return responseJson;
     } on SocketException {
@@ -77,7 +78,7 @@ abstract class ApiBase {
     }
   }
 
-   Future<ApiResponse> put(Map body) async {
+  Future<ApiResponse> put(Map body) async {
     final headers = await _getHeaders();
     print("URL:::: Put $url");
 
@@ -99,13 +100,13 @@ abstract class ApiBase {
     switch (response.statusCode) {
       case HttpStatus.created:
       case HttpStatus.ok:
-        final data =  response.body.isNotEmpty
+        final data = response.body.isNotEmpty
             ? json.decode(utf8.decode(response.bodyBytes))
             : "";
 
         apiResponse = ApiResponse.complete(data);
         if (data.containsKey("message") && data["message"] != null)
-            apiResponse.message = data["message"];
+          apiResponse.message = data["message"];
         break;
       case HttpStatus.badRequest:
         return _getError(response);
@@ -129,9 +130,7 @@ abstract class ApiBase {
         throw UnauthorisedException(StringConstants.serviceUnavailable);
 
       default:
-        final data = response.body.isNotEmpty
-            ? json.decode(response.body)
-            : "";
+        final data = response.body.isNotEmpty ? json.decode(response.body) : "";
         String? message;
 
         if (data.containsKey("detail")) {
@@ -168,9 +167,8 @@ abstract class ApiBase {
 
     final String? token = UserSession.shared.token;
     final Map<String, String> headers = {
-      'Authorization': 'Bearer $token',
       "Content-Type": "application/json",
-      "Accept": "application/json",
+      "Accept": "application/json",      
     };
     if (token != null && token.isNotEmpty) {
       headers["Authorization"] = 'Bearer $token';

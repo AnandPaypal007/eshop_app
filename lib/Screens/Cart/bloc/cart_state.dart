@@ -54,6 +54,30 @@ class CartItemDeletedState extends CartState {
   List<Object> get props => [];
 }
 
+class InvoiceCreatedState extends CartState {
+  @override
+  String toString() => 'InvoiceCreatedState';
+
+  @override
+  List<Object> get props => [];
+}
+
+class PaymentSuccessState extends CartState {
+  @override
+  String toString() => 'PaymentSuccessState';
+
+  @override
+  List<Object> get props => [];
+}
+
+class PaymentErrorState extends CartState {
+  @override
+  String toString() => 'PaymentErrorState';
+
+  @override
+  List<Object> get props => [];
+}
+
 class ErrorCartState extends CartState {
   ErrorCartState(this.errorMessage);
 
