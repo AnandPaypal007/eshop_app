@@ -32,7 +32,7 @@ class CartCell extends StatelessWidget {
           Flexible(
               child: AppTitle(
             textAlign: TextAlign.left,
-            title: cart!.productName,
+            title: cart!.name,
             maxLines: 2,
           )),
           Padding(
@@ -68,7 +68,7 @@ class CartCell extends StatelessWidget {
                 ),
                 const Spacer(),
                 Image.network(
-                  cart!.logo!,
+                  cart!.logo ?? "",
                   width: 100,
                   height: 60,
                 ),

@@ -127,7 +127,7 @@ class AppApi extends ApiBase {
 
   deleteCartItem(cartId) async {
     try {
-      String url = AppUrls.cart + "?cart_id=$cartId";
+      String url = AppUrls.cart + "?product_id=$cartId";
 
       APIServiceManager api = APIServiceManager(url);
       ApiResponse response = await api.delete();

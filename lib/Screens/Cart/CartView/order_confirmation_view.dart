@@ -10,12 +10,26 @@ class OrderConfirmationView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer(
         builder: (c, state) {
-          return Center(
-            child: Column(
-              children: [
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  AppTitle(title: "Order Placed successfully"),
+                  Icon(
+                    Icons.check_circle,
+                    color: Colors.green,
+                    size: 30,
+                  ),
+                ],
+              ),
+              if (state is PaymentSuccessState)
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
-                    AppTitle(title: "Order Placed successfully"),
+                    AppTitle(title: "Payment successfull"),
                     Icon(
                       Icons.check_circle,
                       color: Colors.green,
@@ -23,32 +37,30 @@ class OrderConfirmationView extends StatelessWidget {
                     ),
                   ],
                 ),
-                if (state is PaymentSuccessState)
-                  Row(
-                    children: const [
-                      AppTitle(title: "Payment successfull"),
-                      Icon(
-                        Icons.check_circle,
-                        color: Colors.green,
+              if (state is PaymentErrorState)
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const AppTitle(
+                        title: "Payment Failed, do you want to try again?"),
+                    IconButton(
+                      icon: const Icon(
+                        Icons.repeat,
+                        color: Colors.red,
                         size: 30,
                       ),
-                    ],
-                  ),
-                if (state is PaymentErrorState)
-                  Row(
-                    children: const [
-                      AppTitle(title: "Payment error"),
-                      Icon(
-                        Icons.check_circle,
-                        color: Colors.green,
-                        size: 30,
-                      ),
-                    ],
-                  ),
-              ],
-            ),
+                      onPressed: () => _retryPayment(context),
+                    )
+                  ],
+                ),
+            ],
           );
         },
+        bloc: BlocProvider.of<CartBloc>(context),
         listener: (c, state) {});
+  }
+
+  _retryPayment(context) {
+    BlocProvider.of<CartBloc>(context).add(MakePaymentEvent());
   }
 }

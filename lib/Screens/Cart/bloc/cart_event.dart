@@ -28,6 +28,7 @@ class LoadCartEvent extends CartEvent {
       final ApiResponse response = await bloc?.repo.fetchCart();
       if (response.status == APIStatus.completed) {
         final MCartResponse res = MCartResponse.fromJson(response.data);
+        bloc?.repo.cartId = res.id ?? 0;
         bloc?.repo.product = res.items;
       } else {
         yield ErrorCartState(response.message);
@@ -48,7 +49,7 @@ class UpdateCartQuantityEvent extends CartEvent {
     try {
       yield CartLoadingState();
       final body = {
-        'cart_id': bloc?.repo.currentItem?.id,
+        'product_id': bloc?.repo.currentItem?.productId,
         "quantity": bloc?.repo.currentItem?.quantity
       };
 
@@ -73,7 +74,7 @@ class DeleteCartItemEvent extends CartEvent {
     try {
       yield CartLoadingState();
       final ApiResponse response =
-          await bloc?.repo.deleteCartItem(bloc.repo.currentItem?.id);
+          await bloc?.repo.deleteCartItem(bloc.repo.currentItem?.productId);
       if (response.status == APIStatus.completed) {
         yield CartItemDeletedState();
       } else {
@@ -110,7 +111,7 @@ class CreateInvoiceEvent extends CartEvent {
        final ApiResponse response =
           await bloc?.repo.createInvoice();
       if (response.status == APIStatus.completed) {
-        yield InvoiceCreatedState();
+        yield InvoiceCreatedState(id: response.data["invoice"]["id"]);
       } else {
         yield ErrorCartState(response.message);
       }
@@ -123,14 +124,13 @@ class CreateInvoiceEvent extends CartEvent {
 }
 
 class MakePaymentEvent extends CartEvent {
-  final int invoiceId;
-  MakePaymentEvent({this.invoiceId = 0});
+  MakePaymentEvent();
   @override
   Stream<CartState> applyAsync(
       {CartState? currentState, CartBloc? bloc}) async* {
     try {
        final ApiResponse response =
-          await bloc?.repo.makePayment(invoiceId);
+          await bloc?.repo.makePayment(bloc.repo.invoice);
       if (response.status == APIStatus.completed) {
         yield PaymentSuccessState();
       } else {

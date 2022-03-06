@@ -67,7 +67,7 @@ class CartView extends StatelessWidget {
       },
       listener: (c, state) {
         if (state is InvoiceCreatedState) {
-          AppNavigator.push(OrderConfirmationPage());
+          AppNavigator.push(OrderConfirmationPage(invoiceId: state.id?? 0,));
         }
       },
       bloc: bloc,

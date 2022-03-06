@@ -15,5 +15,5 @@ class AppUrls {
   static String productOffers = "store/products/offers";
   static String deals = "store/products/deals";
   static String createInvoice = "payment/invoice";
-  static String makePayment = "payment/invoice";
+  static String makePayment = "payment/transication";
 }

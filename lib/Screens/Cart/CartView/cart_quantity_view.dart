@@ -39,7 +39,7 @@ class _CartQuantityViewState extends State<CartQuantityView> {
             Padding(
               padding: const EdgeInsets.only(top: 10.0, right: 20),
               child: AppStepper(
-                value: widget.cart!.quantity!,
+                value: widget.cart!.quantity ?? 0,
                 valueCallBack: (v) {
                   if (widget.cart != null) {
                     widget.cart!.quantity = v;

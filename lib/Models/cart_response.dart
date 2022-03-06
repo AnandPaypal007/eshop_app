@@ -2,13 +2,15 @@ import 'cart.dart';
 
 class MCartResponse {
   List<MCart>? items;
+  int? id;
 
-  MCartResponse({this.items});
+  MCartResponse({this.items, this.id});
 
   MCartResponse.fromJson(Map<String, dynamic> json) {
-    if (json['items'] != null) {
+    id = json["id"] ?? 0;
+    if (json['products'] != null) {
       items = <MCart>[];
-      json['items'].forEach((v) {
+      json['products'].forEach((v) {
         items!.add(MCart.fromJson(v));
       });
     }

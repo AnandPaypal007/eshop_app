@@ -55,6 +55,8 @@ class CartItemDeletedState extends CartState {
 }
 
 class InvoiceCreatedState extends CartState {
+  final int? id;
+  InvoiceCreatedState({this.id});
   @override
   String toString() => 'InvoiceCreatedState';
 

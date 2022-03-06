@@ -6,6 +6,8 @@ class CartRepo {
 
   final List<MCart> _products = List<MCart>.empty(growable: true);
   MCart? _currentItem;
+  int cartId = 0;
+  int invoice = 0;
 
   set product(v) => _products.addAll(v);
   get product => _products;
@@ -29,7 +31,7 @@ class CartRepo {
   makeInvoiceData() {
     num total = cartTotal();
     final products = _products.map((e) => {"product_id": e.id}).toList();
-    final data = {"total": total, "tax": 0.0, "products": products};
+    final data = {"total": total, "tax": 0.0, "products": products, "cart_id" : cartId};
     return data;
   }
 
