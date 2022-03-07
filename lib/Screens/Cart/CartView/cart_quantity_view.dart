@@ -3,6 +3,7 @@ import 'package:eshop/Screens/Cart/bloc/cart_repo.dart';
 import 'package:eshop/Screens/Cart/bloc/index.dart';
 import 'package:eshop/Screens/CommonWidgets/app_alert.dart';
 import 'package:eshop/Screens/CommonWidgets/app_stepper.dart';
+import 'package:eshop/Utils/user_session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -74,6 +75,7 @@ class _CartQuantityViewState extends State<CartQuantityView> {
         }
         if (state is CartItemDeletedState) {
           BlocProvider.of<CartBloc>(context).add(ReloadCartEvent());
+          UserSession.shared.refreshCart();
           AppAlert.showToast(message: "Item deleted successfully");
         }
         if (state is ErrorCartState) {

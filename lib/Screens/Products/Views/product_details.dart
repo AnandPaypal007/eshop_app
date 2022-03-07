@@ -3,6 +3,7 @@ import 'package:eshop/Screens/CommonWidgets/app_title.dart';
 import 'package:eshop/Screens/CommonWidgets/cart_view.dart';
 import 'package:eshop/Screens/CommonWidgets/nav_bar.dart';
 import 'package:eshop/Screens/Products/Pages/product_image_slider.dart';
+import 'package:eshop/Screens/Products/Views/product_like_view.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetailsView extends StatelessWidget {
@@ -29,10 +30,8 @@ class ProductDetailsView extends StatelessWidget {
                     images: product?.images,
                   ),
                   Positioned(
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.favorite),
-                      color: Colors.grey,
+                    child: ProductLikeView(
+                      productId: product?.id ?? 0,
                     ),
                     right: 0,
                     top: 0,

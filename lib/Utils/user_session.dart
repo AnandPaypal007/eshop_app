@@ -32,6 +32,11 @@ class UserSession {
     prefs.setString(AppKeys.token, token);
   }
 
+  retToekn() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString(AppKeys.token, "");
+  }
+
   Future<dynamic> getToekn() async {
     final prefs = await SharedPreferences.getInstance();
     _token = prefs.getString(

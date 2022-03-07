@@ -90,6 +90,17 @@ class AppApi extends ApiBase {
     }
   }
 
+  userOrders() async {
+    try {
+      String url = AppUrls.orders;
+      APIServiceManager api = APIServiceManager(url);
+      ApiResponse response = await api.get();
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
   addToCart(body) async {
     try {
       String url = AppUrls.cart;

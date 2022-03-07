@@ -37,52 +37,54 @@ class _HomeBannerViewState extends State<HomeBannerView> {
             return const AppLoader();
           }
 
-          return Padding(
-            padding: const EdgeInsets.only(top: 10.0),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 150, //size.height / 4,
-                  width: size.width,
-                  child: PageView(
-                    children: <Widget>[
-                      ...bloc!.repo.offers
-                          .map((e) => GestureDetector(
-                                onTap: () => showProducts(context, e.id),
-                                child: Image.network(
-                                  e.logo ?? "",
-                                  fit: BoxFit.cover,
-                                ),
-                              ))
-                          .toList()
-                    ],
-                    controller: pageController,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 5.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+          return bloc!.repo.offers.isEmpty
+              ? Container()
+              : Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: Column(
                     children: [
-                      Expanded(
-                        child: Container(
-                          alignment: Alignment.center,
-                          child: SmoothPageIndicator(
-                              controller: pageController,
-                              count: bloc!.repo.offers.length,
-                              effect: const WormEffect(
-                                  activeDotColor: AppColors.darkBlue,
-                                  paintStyle: PaintingStyle
-                                      .stroke), // your preferred effect
-                              onDotClicked: (index) {}),
+                      SizedBox(
+                        height: 150, //size.height / 4,
+                        width: size.width,
+                        child: PageView(
+                          children: <Widget>[
+                            ...bloc!.repo.offers
+                                .map((e) => GestureDetector(
+                                      onTap: () => showProducts(context, e.id),
+                                      child: Image.network(
+                                        e.logo ?? "",
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ))
+                                .toList()
+                          ],
+                          controller: pageController,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: Container(
+                                alignment: Alignment.center,
+                                child: SmoothPageIndicator(
+                                    controller: pageController,
+                                    count: bloc!.repo.offers.length,
+                                    effect: const WormEffect(
+                                        activeDotColor: AppColors.darkBlue,
+                                        paintStyle: PaintingStyle
+                                            .stroke), // your preferred effect
+                                    onDotClicked: (index) {}),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
-                ),
-              ],
-            ),
-          );
+                );
         });
   }
 

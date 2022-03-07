@@ -1,7 +1,7 @@
 import 'package:eshop/Screens/CommonWidgets/app_title.dart';
 import 'package:eshop/Screens/Profile/Orders/Pages/order_page.dart';
 import 'package:eshop/Utils/app_navigator.dart';
-import 'package:eshop/Utils/apptheme.dart';
+import 'package:eshop/Utils/user_session.dart';
 import 'package:flutter/material.dart';
 
 class ProfileView extends StatelessWidget {
@@ -71,7 +71,10 @@ class ProfileView extends StatelessWidget {
             flex: 1,
             child: IconButton(
               icon: const Icon(Icons.logout),
-              onPressed: () {},
+              onPressed: () {
+                UserSession.shared.retToekn();
+                Navigator.popAndPushNamed(context, "/");
+              },
             ))
       ],
     );

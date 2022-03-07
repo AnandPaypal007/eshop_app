@@ -26,7 +26,7 @@ class _AuthenticatorState extends State<Authenticator> {
     return Scaffold(
       body: FutureBuilder(
           builder: (c, AsyncSnapshot<dynamic> snap) {
-            if (snap.hasData && snap.data != null) {
+            if (snap.hasData && snap.data != null && snap.data.length > 0) {
               return const AppTabbar();
             } else if (snap.hasError && snap.error != null) {
               return const LoginPage();

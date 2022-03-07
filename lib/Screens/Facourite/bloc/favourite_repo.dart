@@ -4,6 +4,7 @@ import 'package:eshop/Services/app_api.dart';
 
 class FavouriteRepo {
   AppApi api = AppApi();
+  int productId = 0;
   List<MProducts> _products = List<MProducts>.empty(growable: true);
 
   set products(v) => _products = v;
@@ -16,7 +17,7 @@ class FavouriteRepo {
   }
 
   makeFavourite() async {
-    ApiResponse response = await api.makeFavourite("");
+    ApiResponse response = await api.makeFavourite({"product_id":productId});
     return response;
   }
 

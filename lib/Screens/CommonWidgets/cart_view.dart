@@ -1,9 +1,9 @@
 import 'package:eshop/Screens/CommonWidgets/app_loader.dart';
-import 'package:eshop/Screens/Home/bloc/index.dart';
 import 'package:eshop/Screens/Profile/bloc/user_bloc.dart';
 import 'package:eshop/Screens/Profile/bloc/user_event.dart';
 import 'package:eshop/Screens/Profile/bloc/user_repo.dart';
 import 'package:eshop/Screens/Profile/bloc/user_state.dart';
+import 'package:eshop/Utils/user_session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -34,6 +34,7 @@ class _AppCartViewState extends State<AppCartView> {
         builder: (context, state) {
           if (state is UserLoadingState) return const AppLoader();
           if (state is CartFetchingDoneState) {
+            UserSession.shared.refreshCart();
           }
           return IconButton(
               onPressed: () {

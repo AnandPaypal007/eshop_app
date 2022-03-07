@@ -22,6 +22,13 @@ class CartFetchingDoneState extends UserState {
   String toString() => 'CartFetchingDoneState';
 }
 
+class OrdersFetchingDoneState extends UserState {
+  OrdersFetchingDoneState();
+
+  @override
+  String toString() => 'OrdersFetchingDoneState';
+}
+
 /// Initialized
 class UserLoadingState extends UserState {
   UserLoadingState();

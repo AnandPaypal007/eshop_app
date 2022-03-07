@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'dart:developer' as developer;
+import 'package:eshop/Models/offer_response.dart';
+import 'package:eshop/Models/order_response.dart';
 import 'package:eshop/Services/api_response.dart';
 import 'package:meta/meta.dart';
 
@@ -48,10 +50,31 @@ class AddCartEvent extends UserEvent {
       {UserState? currentState, UserBloc? bloc}) async* {
     try {
       yield UserLoadingState();
-      ApiResponse response =
-          await bloc?.repo.addCart(body);
+      ApiResponse response = await bloc?.repo.addCart(body);
       if (response.status == APIStatus.completed) {
         yield CartFetchingDoneState();
+      } else {
+        yield ErrorUserState(response.message);
+      }
+    } catch (_, stackTrace) {
+      developer.log('$_',
+          name: 'LoadUserEvent', error: _, stackTrace: stackTrace);
+      yield ErrorUserState(_.toString());
+    }
+  }
+}
+
+class LoadOrdersEvent extends UserEvent {
+  @override
+  Stream<UserState> applyAsync(
+      {UserState? currentState, UserBloc? bloc}) async* {
+    try {
+      yield UserLoadingState();
+      ApiResponse response = await bloc?.repo.fetchOrders();
+      if (response.status == APIStatus.completed) {
+        MOrderResponse ordersResponse = MOrderResponse.fromJson(response.data);
+        bloc?.repo.orders = ordersResponse.orders;
+        yield OrdersFetchingDoneState();
       } else {
         yield ErrorUserState(response.message);
       }

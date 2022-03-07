@@ -49,7 +49,7 @@ class MakeFavouriteEvent extends FavouriteEvent {
       {FavouriteState? currentState, FavouriteBloc? bloc}) async* {
     try {
       yield FavouriteLooadingState();
-      await Future.delayed(const Duration(seconds: 1));
+      await bloc?.repo.makeFavourite();
       yield FavouriteDoneState();
     } catch (_, stackTrace) {
       developer.log('$_',
