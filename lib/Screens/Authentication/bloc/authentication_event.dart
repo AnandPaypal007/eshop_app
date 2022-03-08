@@ -41,3 +41,26 @@ class SigninEvent extends AuthenticationEvent {
     }
   }
 }
+
+class SignupEvent extends AuthenticationEvent {
+  SignupEvent();
+
+  @override
+  Stream<AuthenticationState> applyAsync(
+      {AuthenticationState? currentState, AuthenticationBloc? bloc}) async* {
+    try {
+      yield const AuthenticationLoadingState();
+      final ApiResponse response = await bloc?.repo.signup();
+      if (response.status == APIStatus.completed) {
+         UserSession.shared.setToekn(response.data["token"]);
+        yield const AuthenticationDoneState();
+      } else {
+        yield ErrorAuthenticationState(response.message);
+      }
+    } catch (_, stackTrace) {
+      developer.log('$_',
+          name: 'LoadAuthenticationEvent', error: _, stackTrace: stackTrace);
+      yield ErrorAuthenticationState(_.toString());
+    }
+  }
+}

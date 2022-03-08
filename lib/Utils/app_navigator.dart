@@ -23,4 +23,8 @@ class AppNavigator {
       id: id,
     ));
   }
+
+  static pop() {
+    Navigator.pop(NavigationService.navigatorKey.currentContext!);
+  }
 }
