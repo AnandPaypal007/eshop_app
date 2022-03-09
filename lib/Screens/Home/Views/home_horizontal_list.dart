@@ -5,12 +5,14 @@ import 'package:eshop/Screens/Home/Views/view_all.dart';
 import 'package:eshop/Screens/Home/bloc/home_repo.dart';
 import 'package:eshop/Screens/Home/bloc/index.dart';
 import 'package:eshop/Utils/app_navigator.dart';
+import 'package:eshop/Utils/apptheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeHorizontalList extends StatefulWidget {
   final String? title;
-  const HomeHorizontalList({Key? key, this.title}) : super(key: key);
+  final String? type;
+  const HomeHorizontalList({Key? key, this.title, this.type = "latest"}) : super(key: key);
 
   @override
   State<HomeHorizontalList> createState() => _HomeHorizontalListState();
@@ -23,7 +25,7 @@ class _HomeHorizontalListState extends State<HomeHorizontalList> {
   void initState() {
     super.initState();
     bloc = HomeBloc(HomeDefaultState(), HomeRepo());
-    bloc?.add(LoadDealsEvent(type: "latest"));
+    bloc?.add(LoadDealsEvent(type: widget.type));
   }
 
   @override
@@ -91,11 +93,20 @@ class _HomeHorizontalListState extends State<HomeHorizontalList> {
                                   )
                                 ],
                               ),
-                              const Positioned(
-                                child: AppTitle(
-                                  title: "30%",
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
+                              Positioned(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: AppColors.darkBlue,
+                                      borderRadius: BorderRadius.circular(5)),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(2.0),
+                                    child: AppTitle(
+                                      title: "${product.percentage}%",
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                  ),
                                 ),
                                 right: 0,
                                 top: 0,

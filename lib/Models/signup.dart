@@ -28,6 +28,7 @@ class MSignup {
     data['email'] = email;
     data['last_name'] = lastName;
     data['password'] = passsword;
+    data['password1'] = passsword;
 
     return data;
   }

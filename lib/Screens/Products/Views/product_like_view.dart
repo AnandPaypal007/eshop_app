@@ -6,7 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductLikeView extends StatefulWidget {
   final int? productId;
-  const ProductLikeView({Key? key, @required this.productId}) : super(key: key);
+  final bool? isLiked;
+  const ProductLikeView({Key? key, @required this.productId, this.isLiked})
+      : super(key: key);
 
   @override
   State<ProductLikeView> createState() => _ProductLikeViewState();
@@ -24,17 +26,22 @@ class _ProductLikeViewState extends State<ProductLikeView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FavouriteBloc, FavouriteState>(
-      builder: (context, state) {
-        if (state is FavouriteLooadingState) return const AppLoader();
-        return IconButton(
-          onPressed: () {
-            bloc?.add(MakeFavouriteEvent());
-          },
-          icon: const Icon(Icons.favorite),
-          color: Colors.grey,
-        );
-      },
+    return BlocProvider(
+      create: (context) => bloc!,
+      child: BlocBuilder<FavouriteBloc, FavouriteState>(
+        builder: (context, state) {
+          if (state is FavouriteLooadingState) return const AppLoader();
+          return IconButton(
+            onPressed: () {
+              bloc?.add(MakeFavouriteEvent());
+            },
+            icon: const Icon(
+              Icons.favorite,
+            ),
+            color: widget.isLiked! ? Colors.red : Colors.red[200],
+          );
+        },
+      ),
     );
   }
 }

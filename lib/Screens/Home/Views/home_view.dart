@@ -18,8 +18,10 @@ class HomeView extends StatelessWidget {
             CategoriesGridView(),
             HomeHorizontalList(
               title: "Recently Added",
+              type: "latest",
             ),
-            HomeHorizontalList(title: "Deals of the day"),
+            HomeHorizontalList(title: "Deals of the day", type: "deals",),
+            HomeHorizontalList(title: "Most liked", type: "desired",),
           ],
         ),
       ),

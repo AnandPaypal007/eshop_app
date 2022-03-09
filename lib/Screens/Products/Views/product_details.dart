@@ -32,6 +32,7 @@ class ProductDetailsView extends StatelessWidget {
                   Positioned(
                     child: ProductLikeView(
                       productId: product?.id ?? 0,
+                      isLiked: product?.isLiked ?? false,
                     ),
                     right: 0,
                     top: 0,

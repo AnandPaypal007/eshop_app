@@ -1,4 +1,3 @@
-import 'dart:js';
 
 import 'package:eshop/Constant/app_keys.dart';
 import 'package:eshop/Screens/Authentication/bloc/auth_repo.dart';
@@ -66,8 +65,8 @@ class SignupView extends StatelessWidget {
             title: AppKeys.signup,
             margin: 30,
             onPressed: () {
-              String error = repo.msignup.validate();
-              if (error.isEmpty) {
+              final error = repo.msignup.validate();
+              if (error == null) {
                 bloc.add(SignupEvent());
               } else {
                 AppAlert.showAlert(message: error);
