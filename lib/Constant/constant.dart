@@ -11,7 +11,7 @@ class AppUrls {
   static String favourite = "user/favourite";
   static String offers = "store/products/offers";
   static String offersDetail = offers + "/detail";
-  static String search = "store/products";
+  static String search = "store/products/search";
   static String productOffers = "store/products/offers";
   static String deals = "store/products/deals";
   static String createInvoice = "payment/invoice";

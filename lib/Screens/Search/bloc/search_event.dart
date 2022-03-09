@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer' as developer;
+import 'package:eshop/Models/product.dart';
 import 'package:eshop/Models/product_response.dart';
 import 'package:eshop/Services/api_response.dart';
 import 'package:meta/meta.dart';
@@ -33,7 +34,7 @@ class LoadSearchEvent extends SearchEvent {
       if (response.status == APIStatus.completed) {
         final res = MProductResponse.fromJson(response.data);
         if (res.products!.isEmpty) {
-          bloc?.repo.products = [];
+          bloc?.repo.products = List<MProducts>.empty(growable: true);
         } else {
           bloc?.repo.products = res.products;
         }

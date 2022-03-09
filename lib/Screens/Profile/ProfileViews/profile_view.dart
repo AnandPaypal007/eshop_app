@@ -58,8 +58,8 @@ class ProfileView extends StatelessWidget {
                         child: Row(
                           children: [
                             AppTitle(title: options[index]),
-                            Spacer(),
-                            Icon(Icons.arrow_forward_ios_outlined)
+                            const Spacer(),
+                            const Icon(Icons.arrow_forward_ios_outlined)
                           ],
                         ),
                       ),
