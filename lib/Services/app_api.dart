@@ -246,4 +246,15 @@ class AppApi extends ApiBase {
       throw Exception(e);
     }
   }
+
+  userDetails() async {
+    try {
+      String url = AppUrls.userDetails;
+      APIServiceManager api = APIServiceManager(url);
+      ApiResponse response = await api.get();
+      return response;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 }

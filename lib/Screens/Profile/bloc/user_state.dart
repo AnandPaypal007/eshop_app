@@ -29,6 +29,13 @@ class OrdersFetchingDoneState extends UserState {
   String toString() => 'OrdersFetchingDoneState';
 }
 
+class ProfileFetchingDoneState extends UserState {
+  ProfileFetchingDoneState();
+
+  @override
+  String toString() => 'ProfileFetchingDoneState';
+}
+
 /// Initialized
 class UserLoadingState extends UserState {
   UserLoadingState();

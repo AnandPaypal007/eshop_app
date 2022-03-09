@@ -1,8 +1,12 @@
+
 import 'package:eshop/Screens/CommonWidgets/app_title.dart';
 import 'package:eshop/Screens/Profile/Orders/Pages/order_page.dart';
+import 'package:eshop/Screens/Profile/bloc/index.dart';
+import 'package:eshop/Screens/Profile/bloc/user_repo.dart';
 import 'package:eshop/Utils/app_navigator.dart';
 import 'package:eshop/Utils/user_session.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({Key? key}) : super(key: key);
@@ -10,6 +14,7 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UserRepo repo = BlocProvider.of<UserBloc>(context).repo;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -19,18 +24,18 @@ class ProfileView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: const [
+            children: [
               CircleAvatar(
                 radius: 50.0,
-                child: Text('C'),
+                child: Image.network(repo.profile.profilePic ?? ""),
               ),
               AppTitle(
-                title: "Vikram Singh Rajpoot",
-                padding: EdgeInsets.only(top: 10),
+                title: repo.profile.firstName,
+                padding: const EdgeInsets.only(top: 10),
               ),
               AppTitle(
-                title: "vikram@gmail.com",
-                padding: EdgeInsets.only(top: 10),
+                title: repo.profile.email,
+                padding: const EdgeInsets.only(top: 10),
               )
             ],
           ),

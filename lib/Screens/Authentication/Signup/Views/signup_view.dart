@@ -1,4 +1,3 @@
-
 import 'package:eshop/Constant/app_keys.dart';
 import 'package:eshop/Screens/Authentication/bloc/auth_repo.dart';
 import 'package:eshop/Screens/Authentication/bloc/authentication_bloc.dart';
@@ -51,11 +50,13 @@ class SignupView extends StatelessWidget {
             onChange: (v) {
               repo.msignup.passsword = v;
             },
+            obscureText: true,
             value: repo.msignup.passsword,
           ),
           AppTextField(
             hintText: AppKeys.confirmPassword,
             topMargin: 10,
+            obscureText: true,
             onChange: (v) {
               repo.msignup.confirmPasssword = v;
             },

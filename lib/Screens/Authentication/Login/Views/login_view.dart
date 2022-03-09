@@ -58,6 +58,7 @@ class _LoginForm extends StatelessWidget {
           hintText: AppKeys.password,
           topMargin: 15,
           onChange: (v) => bloc.repo.password = v,
+          obscureText: true,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
