@@ -1,9 +1,5 @@
-import 'package:eshop/Screens/Authentication/Authenticator.dart';
-import 'package:eshop/Screens/Profile/bloc/user_bloc.dart';
-import 'package:eshop/Screens/Profile/bloc/user_repo.dart';
-import 'package:eshop/Screens/Profile/bloc/user_state.dart';
+import 'package:eshop/Routes/app_routes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,10 +17,12 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: BlocProvider(
-          create: (c) => UserBloc(UserDeaultState(), UserRepo()),
-          child: const Authenticator(),
-        ));
+        routes: {...getRoutes()},
+        // home: BlocProvider(
+        //   create: (c) => UserBloc(UserDeaultState(), UserRepo()),
+        //   child: const Authenticator(),
+        // )
+        );
   }
 }
 

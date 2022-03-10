@@ -1,5 +1,7 @@
 import 'package:eshop/Screens/Cart/bloc/index.dart';
 import 'package:eshop/Screens/CommonWidgets/app_title.dart';
+import 'package:eshop/Utils/app_animator.dart';
+import 'package:eshop/Utils/app_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,6 +16,7 @@ class OrderConfirmationView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              const AppAnimatorView(type: AppAnnimation.orderPlaced,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [

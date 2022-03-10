@@ -1,5 +1,7 @@
 import 'package:eshop/Constant/app_keys.dart';
+import 'package:eshop/Screens/AppTabbar/app_tabbar.dart';
 import 'package:eshop/Screens/Authentication/Signup/Pages/signup_page.dart';
+import 'package:eshop/Screens/Authentication/authenticator.dart';
 import 'package:eshop/Screens/Authentication/bloc/authentication_bloc.dart';
 import 'package:eshop/Screens/Authentication/bloc/index.dart';
 import 'package:eshop/Screens/CommonWidgets/app_alert.dart';
@@ -8,6 +10,8 @@ import 'package:eshop/Screens/CommonWidgets/app_round_button.dart';
 import 'package:eshop/Screens/CommonWidgets/app_textfield.dart';
 import 'package:eshop/Screens/CommonWidgets/app_title.dart';
 import 'package:eshop/Screens/Home/Pages/home_page.dart';
+import 'package:eshop/Utils/app_animator.dart';
+import 'package:eshop/Utils/app_enum.dart';
 import 'package:eshop/Utils/app_navigator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +33,7 @@ class LoginView extends StatelessWidget {
       },
       listener: (c, state) {
         if (state is AuthenticationDoneState) {
-          AppNavigator.pushRemovingAll(const HomePage());
+          AppNavigator.pushRemovingAll(const AppTabbar());
         }
         if (state is ErrorAuthenticationState) {
           AppAlert.showAlert(message: state.errorMessage, context: context);
@@ -50,6 +54,7 @@ class _LoginForm extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        const AppAnimatorView(type: AppAnnimation.login),
         AppTextField(
           hintText: AppKeys.email,
           onChange: (v) => bloc.repo.email = v,

@@ -5,6 +5,8 @@ import 'package:eshop/Screens/Authentication/bloc/index.dart';
 import 'package:eshop/Screens/CommonWidgets/app_alert.dart';
 import 'package:eshop/Screens/CommonWidgets/app_round_button.dart';
 import 'package:eshop/Screens/CommonWidgets/app_textfield.dart';
+import 'package:eshop/Utils/app_animator.dart';
+import 'package:eshop/Utils/app_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,9 +20,11 @@ class SignupView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+         const SizedBox(child:  AppAnimatorView(repeat: false,type: AppAnnimation.registration), height: 200, width: 300,),
+         const SizedBox(height: 20,),
           AppTextField(
             hintText: AppKeys.firstName,
             onChange: (v) {

@@ -29,6 +29,7 @@ class UserSession {
 
   setToekn(token) async {
     final prefs = await SharedPreferences.getInstance();
+    _token = token;
     if(token != null) prefs.setString(AppKeys.token, token);
   }
 

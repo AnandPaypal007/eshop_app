@@ -18,4 +18,5 @@ class AppUrls {
   static String makePayment = "payment/transication";
   static String orders = "user/orders";
   static String userDetails = "user/details";
+  static String animations = "assets/animations/";
 }
