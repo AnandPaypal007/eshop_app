@@ -1,7 +1,9 @@
 import 'package:eshop/Screens/Cart/bloc/index.dart';
+import 'package:eshop/Screens/CommonWidgets/app_round_button.dart';
 import 'package:eshop/Screens/CommonWidgets/app_title.dart';
 import 'package:eshop/Utils/app_animator.dart';
 import 'package:eshop/Utils/app_enum.dart';
+import 'package:eshop/Utils/app_navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,10 +15,12 @@ class OrderConfirmationView extends StatelessWidget {
     return BlocConsumer(
         builder: (c, state) {
           return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const AppAnimatorView(type: AppAnnimation.orderPlaced,),
+              const AppAnimatorView(
+                type: AppAnnimation.orderPlaced,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
@@ -56,6 +60,12 @@ class OrderConfirmationView extends StatelessWidget {
                     )
                   ],
                 ),
+              AppRoundButton(
+                title: "Done",
+                isRightIcon: false,
+                margin: 40,
+                onPressed: () => AppNavigator.popToRoot(),
+              )
             ],
           );
         },

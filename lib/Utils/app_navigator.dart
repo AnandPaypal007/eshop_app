@@ -27,4 +27,9 @@ class AppNavigator {
   static pop() {
     Navigator.pop(NavigationService.navigatorKey.currentContext!);
   }
+
+  static popToRoot() {
+    Navigator.popUntil(NavigationService.navigatorKey.currentContext!,
+        (Route<dynamic> route) => route.isFirst);
+  }
 }

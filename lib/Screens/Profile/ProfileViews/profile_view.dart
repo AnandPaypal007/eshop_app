@@ -1,9 +1,9 @@
-
 import 'package:eshop/Screens/CommonWidgets/app_title.dart';
 import 'package:eshop/Screens/Profile/Orders/Pages/order_page.dart';
 import 'package:eshop/Screens/Profile/bloc/index.dart';
 import 'package:eshop/Screens/Profile/bloc/user_repo.dart';
 import 'package:eshop/Utils/app_navigator.dart';
+import 'package:eshop/Utils/apptheme.dart';
 import 'package:eshop/Utils/user_session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,7 +27,10 @@ class ProfileView extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 50.0,
-                child: Image.network(repo.profile.profilePic ?? ""),
+                child: ClipRRect(
+                  child: Image.network(repo.profile.profilePic ?? ""),
+                  borderRadius: BorderRadius.circular(50),
+                ),
               ),
               AppTitle(
                 title: repo.profile.firstName,
@@ -42,7 +45,7 @@ class ProfileView extends StatelessWidget {
         ),
         Expanded(
           child: Container(
-            decoration: const BoxDecoration(color: Colors.white),
+            decoration: BoxDecoration(color: AppColors.blue100),
             child: ListView.builder(
               itemBuilder: (c, index) {
                 return Card(
@@ -54,6 +57,7 @@ class ProfileView extends StatelessWidget {
                         AppNavigator.push(OrderPage());
                       },
                       child: Container(
+                        height: 30,
                         color: Colors.white,
                         child: Row(
                           children: [

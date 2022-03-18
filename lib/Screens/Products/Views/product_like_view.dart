@@ -1,3 +1,4 @@
+import 'package:eshop/Models/product.dart';
 import 'package:eshop/Screens/CommonWidgets/app_loader.dart';
 import 'package:eshop/Screens/Facourite/bloc/favourite_repo.dart';
 import 'package:eshop/Screens/Facourite/bloc/index.dart';
@@ -5,9 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductLikeView extends StatefulWidget {
-  final int? productId;
-  final bool? isLiked;
-  const ProductLikeView({Key? key, @required this.productId, this.isLiked})
+  final MProducts? product;
+  const ProductLikeView({Key? key, this.product})
       : super(key: key);
 
   @override
@@ -21,7 +21,7 @@ class _ProductLikeViewState extends State<ProductLikeView> {
   void initState() {
     super.initState();
     bloc = FavouriteBloc(FavouriteDefaultState(), FavouriteRepo());
-    bloc?.repo.productId = widget.productId!;
+    bloc?.repo.productId = widget.product!.id!;
   }
 
   @override
@@ -38,7 +38,7 @@ class _ProductLikeViewState extends State<ProductLikeView> {
             icon: const Icon(
               Icons.favorite,
             ),
-            color: widget.isLiked! ? Colors.red : Colors.red[200],
+            color: widget.product!.isLiked! ? Colors.red : Colors.red[200],
           );
         },
       ),

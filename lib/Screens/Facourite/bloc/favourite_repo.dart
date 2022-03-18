@@ -22,7 +22,7 @@ class FavouriteRepo {
   }
 
   deleteFavourite() async {
-    ApiResponse response = await api.makeFavourite("");
+    ApiResponse response = await api.deleteFavourite(productId);
     return response;
   }
 }

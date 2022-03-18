@@ -38,7 +38,7 @@ class UserRepo {
   }
 
   set profile(v) => _profile = v;
-  MUserProfile get profile => _profile!;
+  MUserProfile get profile =>  _profile!;
 
   userDetails() async {
     ApiResponse response = await api.userDetails();

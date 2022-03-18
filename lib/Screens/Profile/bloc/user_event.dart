@@ -4,6 +4,7 @@ import 'package:eshop/Models/offer_response.dart';
 import 'package:eshop/Models/order_response.dart';
 import 'package:eshop/Models/user_profile.dart';
 import 'package:eshop/Services/api_response.dart';
+import 'package:eshop/Utils/user_session.dart';
 import 'package:meta/meta.dart';
 
 import 'index.dart';
@@ -27,6 +28,9 @@ class LoadCartCountEvent extends UserEvent {
       {UserState? currentState, UserBloc? bloc}) async* {
     try {
       yield UserLoadingState();
+      if (UserSession.shared.token == "" || UserSession.shared.token == null) {
+        yield CartFetchingDoneState();
+      }
       ApiResponse response = await bloc?.repo.fetchCartCount();
       if (response.status == APIStatus.completed) {
         bloc?.repo.cartCount = response.data["count"];

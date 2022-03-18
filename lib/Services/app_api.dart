@@ -192,9 +192,9 @@ class AppApi extends ApiBase {
     }
   }
 
-  deleteFavourite() async {
+  deleteFavourite(id) async {
     try {
-      String url = AppUrls.favourite;
+      String url = AppUrls.favourite + "?id=$id";
       APIServiceManager api = APIServiceManager(url);
       ApiResponse response = await api.delete();
       return response;

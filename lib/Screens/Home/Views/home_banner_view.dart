@@ -7,6 +7,7 @@ import 'package:eshop/Utils/apptheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class HomeBannerView extends StatefulWidget {
   const HomeBannerView({Key? key}) : super(key: key);
@@ -44,7 +45,7 @@ class _HomeBannerViewState extends State<HomeBannerView> {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: 150, //size.height / 4,
+                        height: kIsWeb ? size.height / 3 : 150,
                         width: size.width,
                         child: PageView(
                           children: <Widget>[
@@ -53,7 +54,7 @@ class _HomeBannerViewState extends State<HomeBannerView> {
                                       onTap: () => showProducts(context, e.id),
                                       child: Image.network(
                                         e.logo ?? "",
-                                        fit: BoxFit.cover,
+                                        fit: BoxFit.contain,
                                       ),
                                     ))
                                 .toList()
