@@ -17,10 +17,12 @@ class LoginPage extends StatelessWidget {
       appBar: const Navbar(
         title: AppKeys.login,
       ),
-      body: BlocProvider(
-        create: (c) =>
-            AuthenticationBloc(const AuthenticationDefaultState(), AuthRepo()),
-        child: const WebBuilder(child: LoginView()),
+      body: SingleChildScrollView(
+        child: BlocProvider(
+          create: (c) =>
+              AuthenticationBloc(const AuthenticationDefaultState(), AuthRepo()),
+          child: const WebBuilder(child: LoginView()),
+        ),
       ),
     );
   }

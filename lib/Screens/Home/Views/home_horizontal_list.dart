@@ -8,6 +8,7 @@ import 'package:eshop/Utils/app_navigator.dart';
 import 'package:eshop/Utils/apptheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class HomeHorizontalList extends StatefulWidget {
   final String? title;
@@ -39,10 +40,10 @@ class _HomeHorizontalListState extends State<HomeHorizontalList> {
           return Column(
             children: [
               ViewAll(
-                title: widget.title,
+                title:  widget.title,
               ),
               Container(
-                height: 160,
+                height:kIsWeb ? 260 : 160,
                 // margin: const EdgeInsets.all(5),
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -53,8 +54,8 @@ class _HomeHorizontalListState extends State<HomeHorizontalList> {
                       child: Card(
                         child: Container(
                           margin: const EdgeInsets.all(5),
-                          height: 150,
-                          width: 100,
+                          height: kIsWeb ? 300 : 150,
+                          width: kIsWeb ? 200 : 100,
                           child: Stack(
                             children: [
                               Column(
@@ -66,8 +67,8 @@ class _HomeHorizontalListState extends State<HomeHorizontalList> {
                                     children: [
                                       Image.network(
                                         product.logo ?? "",
-                                        height: 90,
-                                        width: 100,
+                                        height: kIsWeb ? 180 : 90,
+                                        width: kIsWeb ? 200 : 100,
                                       ),
                                     ],
                                   ),

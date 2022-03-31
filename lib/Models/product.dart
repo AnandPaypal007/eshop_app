@@ -1,3 +1,5 @@
+import 'product_variation.dart';
+
 abstract class MProductBase {
   String? name;
   num? price;
@@ -11,7 +13,17 @@ abstract class MProductBase {
 }
 
 class MProducts extends MProductBase {
-  MProducts({name, price, logo, offerPrice, description, id, images,});
+  List<String>? size;
+  List<MVariation>? variation;
+  MProducts({
+    name,
+    price,
+    logo,
+    offerPrice,
+    description,
+    id,
+    images,
+  });
 
   MProducts.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -26,6 +38,15 @@ class MProducts extends MProductBase {
     final diff = price! - offerPrice!;
     percentage = ((diff / price!) * 100).toInt();
     isLiked = json["is_liked"];
+    if (json['size'] != null) {
+      size = json['size'].cast<String>();
+    }
+    if (json['variation'] != null) {
+      variation = <MVariation>[];
+      json['variation'].forEach((v) {
+        variation!.add(MVariation.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {

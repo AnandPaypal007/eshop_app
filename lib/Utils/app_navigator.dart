@@ -1,12 +1,21 @@
 import 'package:eshop/Screens/Home/Pages/home_page.dart';
 import 'package:eshop/Screens/Products/Pages/product_detail_page.dart';
 import 'package:eshop/main.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class AppNavigator {
   static push(Widget child) {
-    Navigator.push(NavigationService.navigatorKey.currentContext!,
-        MaterialPageRoute(builder: (c) => child));
+    kIsWeb
+        ? Navigator.push(
+            NavigationService.navigatorKey.currentContext!,
+            PageRouteBuilder(
+              pageBuilder: (_, __, ___) => child,
+              transitionDuration: const Duration(seconds: 0),
+            ),
+          )
+        : Navigator.push(NavigationService.navigatorKey.currentContext!,
+            MaterialPageRoute(builder: (c) => child));
   }
 
   static pushRemovingAll(Widget child) {

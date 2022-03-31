@@ -4,11 +4,13 @@ import 'package:eshop/Models/product.dart';
 import 'package:eshop/Screens/CommonWidgets/app_price.dart';
 import 'package:eshop/Screens/CommonWidgets/app_textfield.dart';
 import 'package:eshop/Screens/CommonWidgets/app_title.dart';
+import 'package:eshop/Screens/Home/Views/product_grid_card_view.dart';
 import 'package:eshop/Screens/Search/bloc/index.dart';
 import 'package:eshop/Screens/Search/bloc/search_bloc.dart';
 import 'package:eshop/Utils/app_navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class SearchView extends StatefulWidget {
   const SearchView({
@@ -48,7 +50,7 @@ class _SearchViewState extends State<SearchView> {
                 child: ListView.builder(
                   itemBuilder: (c, index) {
                     final MProducts product = bloc.repo.productFor(index);
-                    return GestureDetector(
+                    return  GestureDetector(
                       onTap: () => AppNavigator.productDetail(
                           id: product.id,),
                       child: Card(

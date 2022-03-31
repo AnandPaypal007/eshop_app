@@ -1,5 +1,7 @@
+
 import 'package:eshop/Screens/CommonWidgets/app_title.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class CategoryCardView extends StatelessWidget {
   final String? logo;
@@ -28,8 +30,8 @@ class CategoryCardView extends StatelessWidget {
               Image.network(
                 logo ?? "",
                 fit: BoxFit.fill,
-                width: 120,
-                height: 100,
+                width: kIsWeb ? 240 : 120,
+                height: kIsWeb ? 200 : 100,
               ),
               SizedBox(
                 height: 20,

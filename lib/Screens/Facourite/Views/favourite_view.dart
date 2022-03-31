@@ -7,6 +7,7 @@ import 'package:eshop/Screens/Products/Views/product_details.dart';
 import 'package:eshop/Utils/app_navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class FavouriteView extends StatelessWidget {
   const FavouriteView({Key? key}) : super(key: key);
@@ -32,7 +33,7 @@ class FavouriteView extends StatelessWidget {
           },
           itemCount: bloc.repo.favouriteCount,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              mainAxisExtent: 272.0, crossAxisCount: 2),
+              mainAxisExtent: 272.0, crossAxisCount: kIsWeb ? 8 : 2),
         );
       },
       listener: (c, state) {},

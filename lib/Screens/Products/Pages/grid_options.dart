@@ -9,6 +9,7 @@ import 'package:eshop/Screens/Products/bloc/product_state.dart';
 import 'package:eshop/Utils/app_navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class GridOptions extends StatefulWidget {
   const GridOptions({Key? key}) : super(key: key);
@@ -122,7 +123,7 @@ class ProductGrid extends StatelessWidget {
         },
         itemCount: products?.length ?? 0,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            mainAxisExtent: 272.0, crossAxisCount: 2),
+            mainAxisExtent: 272.0, crossAxisCount: kIsWeb ? 8 : 2),
       ),
     );
   }

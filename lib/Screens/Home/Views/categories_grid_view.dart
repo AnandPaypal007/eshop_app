@@ -9,6 +9,7 @@ import 'package:eshop/Screens/Products/Pages/product_list_page.dart';
 import 'package:eshop/Utils/app_navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class CategoriesGridView extends StatefulWidget {
   const CategoriesGridView({Key? key}) : super(key: key);
@@ -40,7 +41,7 @@ class _CategoriesGridViewState extends State<CategoriesGridView> {
                 padding: EdgeInsets.only(left: 10, right: 10, top: 0),
               ),
               SizedBox(
-                height: 140,
+                height: kIsWeb ? 240 : 140,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (c, index) {
