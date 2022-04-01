@@ -11,6 +11,7 @@ class ProductRepo {
     _categoryId = categoryId;
   }
   MProducts? _productDetails;
+  MProducts? _productVariation;
 
   set products(v) => _products = v;
   get products => _products;
@@ -20,6 +21,9 @@ class ProductRepo {
   set productDetail(v) => _productDetails = v;
   get productDetail => _productDetails;
   
+  set productVariation(v) => _productVariation = v;
+  get productVariation => _productVariation;
+
 
   set categoryId(v) => _categoryId = v;
   get categoryId => _categoryId;

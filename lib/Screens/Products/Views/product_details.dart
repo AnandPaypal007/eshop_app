@@ -4,7 +4,10 @@ import 'package:eshop/Screens/CommonWidgets/cart_view.dart';
 import 'package:eshop/Screens/CommonWidgets/nav_bar.dart';
 import 'package:eshop/Screens/Products/Pages/product_image_slider.dart';
 import 'package:eshop/Screens/Products/Views/product_like_view.dart';
+import 'package:eshop/Screens/Products/Views/product_variation_color.dart';
+import 'package:eshop/Screens/Products/bloc/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductDetailsView extends StatelessWidget {
   final MProducts? product;
@@ -12,6 +15,16 @@ class ProductDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final repo = BlocProvider.of<ProductBloc>(context).repo;
+    final price = repo.productVariation != null
+        ? repo.productVariation.price
+        : product!.price;
+    final offerPrice = repo.productVariation != null
+        ? repo.productVariation.offerPrice
+        : product!.offerPrice;
+    final images = repo.productVariation != null
+        ? repo.productVariation.images
+        : product!.images;
     return Scaffold(
       appBar: const Navbar(
         title: "Product details",
@@ -27,7 +40,7 @@ class ProductDetailsView extends StatelessWidget {
               Stack(
                 children: [
                   ProductImageSider(
-                    images: product?.images,
+                    images: images,
                   ),
                   Positioned(
                     child: ProductLikeView(
@@ -51,7 +64,7 @@ class ProductDetailsView extends StatelessWidget {
                         title: "Price Rs: ",
                         fontWeight: FontWeight.bold,
                       ),
-                      AppTitle(title: product?.price.toString()),
+                      AppTitle(title: price.toString()),
                     ],
                   ),
                   const Spacer(),
@@ -61,7 +74,7 @@ class ProductDetailsView extends StatelessWidget {
                         title: "Offer Price RS: ",
                         fontWeight: FontWeight.bold,
                       ),
-                      AppTitle(title: product?.offerPrice.toString())
+                      AppTitle(title: offerPrice.toString())
                     ],
                   ),
                   const Spacer(),
@@ -70,6 +83,9 @@ class ProductDetailsView extends StatelessWidget {
                     quantity: 1,
                   )
                 ],
+              ),
+              ProductVariationColor(
+                product: product,
               ),
               const AppTitle(
                 title: "Description: ",
@@ -83,7 +99,7 @@ class ProductDetailsView extends StatelessWidget {
                 textAlign: TextAlign.left,
                 maxLines: 100,
                 padding: const EdgeInsets.only(top: 10),
-              )
+              ),
             ],
           ),
         ),

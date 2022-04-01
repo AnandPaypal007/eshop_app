@@ -1,18 +1,13 @@
-class MVariation {
-  int? id;
-  num? price;
-  num? offerPrice;
+import 'package:eshop/Models/product.dart';
+
+class MVariation extends MProducts {
   String? color;
   int? productId;
-  List<String>? images;
 
-  MVariation(
-      {this.id,
-      this.price,
-      this.offerPrice,
-      this.color,
-      this.productId,
-      this.images});
+  MVariation({
+    this.color,
+    this.productId,
+  });
 
   MVariation.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -21,16 +16,5 @@ class MVariation {
     color = json['color'];
     productId = json['product_id'];
     images = json['images'].cast<String>();
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['price'] = price;
-    data['offer_price'] = offerPrice;
-    data['color'] = color;
-    data['product_id'] = productId;
-    data['images'] = images;
-    return data;
   }
 }

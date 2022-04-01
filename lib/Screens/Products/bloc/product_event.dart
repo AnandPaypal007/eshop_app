@@ -67,3 +67,21 @@ class ProductDetailEvent extends ProductEvent {
     }
   }
 }
+
+class ProductVariationEvent extends ProductEvent {
+  final MProducts? variation;
+  ProductVariationEvent({this.variation});
+  @override
+  Stream<ProductState> applyAsync(
+      {ProductState? currentState, ProductBloc? bloc}) async* {
+    try {
+      yield ProductLoadingState();
+      bloc?.repo.productVariation = variation;
+      yield ProductDoneState();
+    } catch (_, stackTrace) {
+      developer.log('$_',
+          name: 'LoadProductEvent', error: _, stackTrace: stackTrace);
+      yield ErrorProductState(_.toString());
+    }
+  }
+}
